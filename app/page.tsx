@@ -66,9 +66,9 @@ export default function Home() {
   const getDownloadText = () => {
     const os = detectOS();
     if (os === 'iOS') {
-      return 'Télécharger sur l\'App Store';
+      return 'Télécharger';
     } else if (os === 'Android') {
-      return 'Télécharger sur Google Play';
+      return 'Télécharger';
     }
     return 'Télécharger l\'application';
   };
