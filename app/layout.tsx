@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: '/3.png', // Ajoute le favicon
-    apple: '/3.png', // Ajoute l'icône pour iOS
+    apple: '/1.png', // Ajoute l'icône pour iOS
   },
   openGraph: {
     title: 'VITANUIT - Service de bus festif',
