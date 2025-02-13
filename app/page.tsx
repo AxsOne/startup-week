@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Navigation } from '@/components/ui/navigation';
 import { Button } from '@/components/ui/button';
 import { PartyPopper, Calendar, Star } from 'lucide-react';
+import Image from 'next/image';
 
 export default function Home() {
   return (
@@ -29,9 +30,13 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold text-white mb-6 neon-text">
-              VITANUIT
-            </h1>
+            <Image 
+              src="/1-removebg-preview.png"
+              alt="VITANUIT Logo" 
+              width={700}
+              height={700}
+              className="mx-auto drop-shadow-[0_0_35px_rgba(255,255,255,0.8)] transition-all duration-300 hover:drop-shadow-[0_0_45px_rgba(255,255,255,1)]"
+            />
             <p className="text-xl sm:text-2xl text-white/90 mb-8 max-w-2xl mx-auto">
               Vivez une expérience festive unique à bord de notre bus
             </p>

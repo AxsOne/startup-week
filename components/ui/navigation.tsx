@@ -4,13 +4,15 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Menu, X, Bus, Calendar, Camera, PartyPopper } from 'lucide-react';
+import { Menu, X, Bus, Calendar, Camera, PartyPopper, Users } from 'lucide-react';
 import { Button } from './button';
 
 const navItems = [
   { href: '/reservation', label: 'Réserver', icon: Calendar },
   { href: '/galerie', label: 'Galerie', icon: Camera },
   { href: '/evenements', label: 'Événements', icon: PartyPopper },
+  { href: '/Equipe', label: 'Notre Equipe', icon: Users }, 
+  { href: '/contact', label: 'Contact', icon: Bus },
 ];
 
 export function Navigation() {
