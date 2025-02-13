@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Menu, X, Bus, Calendar, Camera, PartyPopper } from 'lucide-react';
@@ -33,7 +34,12 @@ export function Navigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <Link href="/" className="flex items-center space-x-2">
-            <Bus className="h-8 w-8 text-primary" />
+            <Image 
+              src="/1.png"
+              alt="VITANUIT Logo" 
+              width={32}
+              height={32}
+            />
             <span className="font-celandine text-2xl neon-text">VITANUIT</span>
           </Link>
 

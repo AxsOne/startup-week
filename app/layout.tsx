@@ -11,6 +11,10 @@ export const metadata: Metadata = {
   manifest: '/manifest.json',
   themeColor: '#ff66c4',
   viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
+  icons: {
+    icon: '/3.png', // Ajoute le favicon
+    apple: '/3.png', // Ajoute l'icône pour iOS
+  },
   openGraph: {
     title: 'VITANUIT - Service de bus festif',
     description: 'Réservez votre expérience festive unique à bord de notre bus',
