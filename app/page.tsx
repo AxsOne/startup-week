@@ -17,6 +17,10 @@ export default function Home() {
     setIsIOS(/iphone|ipad|ipod/.test(window.navigator.userAgent.toLowerCase()));
 
     window.addEventListener('beforeinstallprompt', (e) => {
+      // Prevent the default prompt
+      e.preventDefault();
+      // Store the event for later use
+      setDeferredPrompt(e);
     });
 
     return () => {
@@ -118,7 +122,7 @@ export default function Home() {
                 <PartyPopper className="mr-2 h-5 w-5" />
                 Voir les événements
               </Button>
-              {isClient && isInstallable && (
+              {isClient && (
                 <Button
                   size="lg"
                   variant="outline"
@@ -126,7 +130,7 @@ export default function Home() {
                   onClick={handleInstallClick}
                 >
                   <Download className="mr-2 h-5 w-5" />
-                  Installer l'application
+                  {getDownloadText()}
                 </Button>
               )}
             </div>
