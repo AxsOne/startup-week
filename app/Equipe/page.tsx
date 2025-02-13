@@ -2,14 +2,19 @@
 
 import { motion } from 'framer-motion';
 import { Navigation } from '@/components/ui/navigation';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 import Image from 'next/image';
+import { useState } from 'react';
 
 export default function TeamPage() {
+  const [showAll, setShowAll] = useState(false);
+  const visibleMembers = showAll ? teamMembers : teamMembers.slice(0, 3);
+  const hasMoreMembers = teamMembers.length > 3;
+
   return (
     <main className="min-h-screen">
       <Navigation />
       
-      {/* Hero Section */}
       <section className="relative py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -27,7 +32,7 @@ export default function TeamPage() {
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {teamMembers.map((member, index) => (
+            {visibleMembers.map((member, index) => (
               <motion.div
                 key={member.name}
                 initial={{ opacity: 0, y: 20 }}
@@ -38,7 +43,7 @@ export default function TeamPage() {
               >
                 <div className="relative w-48 h-48 mx-auto mb-4">
                   <Image
-                    src={member.image}
+                    src={member.image || '/default-avatar.png'} // Assurez-vous d'ajouter une image default-avatar.png dans le dossier public
                     alt={member.name}
                     fill
                     className="rounded-full object-cover"
@@ -48,6 +53,25 @@ export default function TeamPage() {
               </motion.div>
             ))}
           </div>
+
+          {hasMoreMembers && (
+            <motion.button
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              onClick={() => setShowAll(!showAll)}
+              className="mt-8 mx-auto flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
+            >
+              {showAll ? (
+                <>
+                  Voir moins <ChevronUp className="w-4 h-4" />
+                </>
+              ) : (
+                <>
+                  Voir plus <ChevronDown className="w-4 h-4" />
+                </>
+              )}
+            </motion.button>
+          )}
         </div>
       </section>
     </main>
@@ -55,12 +79,28 @@ export default function TeamPage() {
 }
 
 const teamMembers = [
+    {
+        name: "Coralie COLLAS",
+        image: "/coralie.png",
+    },
+    {
+        name: "Lylia BOUJOU",
+        image: "/lylia.jpg",
+    },
+    {
+        name: "Tamîm GANGAT",
+        image: "/Tamîm.jpg",
+    },
+    {
+      name: "Romain NACAOUELE",
+      image: "/romain.jpg",
+    },
   {
-    name: "Romain NACAOUELE",
-    image: "/romain.png",
+    name: "Nathan FIROAGUER",
+    image: "",
   },
   {
-    name: "Coralie COLLAS",
-    image: "/coralie.png",
+    name: "Dany DEURVILHER",
+    image: "",
   }
 ];

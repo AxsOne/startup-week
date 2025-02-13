@@ -3,10 +3,72 @@
 import { motion } from 'framer-motion';
 import { Navigation } from '@/components/ui/navigation';
 import { Button } from '@/components/ui/button';
-import { PartyPopper, Calendar, Star } from 'lucide-react';
+import { PartyPopper, Calendar, Star, Download } from 'lucide-react';
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
 
 export default function Home() {
+  const [isClient, setIsClient] = useState(false);
+  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+  const [isIOS, setIsIOS] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+    setIsIOS(/iphone|ipad|ipod/.test(window.navigator.userAgent.toLowerCase()));
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+    });
+
+    return () => {
+      window.removeEventListener('beforeinstallprompt', () => {});
+    };
+  }, []);
+
+  const handleInstallClick = async () => {
+    if (!deferredPrompt) return;
+
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    
+    if (outcome === 'accepted') {
+      setDeferredPrompt(null);
+    }
+  };
+
+  const isInstallable = deferredPrompt !== null;
+
+  const detectOS = () => {
+    if (!isClient) return null;
+    
+    const userAgent = window.navigator.userAgent.toLowerCase();
+    if (/iphone|ipad|ipod/.test(userAgent)) {
+      return 'iOS';
+    } else if (/android/.test(userAgent)) {
+      return 'Android';
+    }
+    return 'Desktop';
+  };
+
+  const getStoreLink = () => {
+    const os = detectOS();
+    if (os === 'iOS') {
+      return 'https://apps.apple.com/your-app-link';  // Remplacez par votre lien App Store
+    } else if (os === 'Android') {
+      return 'https://play.google.com/store/your-app-link';  // Remplacez par votre lien Play Store
+    }
+    return '#';
+  };
+
+  const getDownloadText = () => {
+    const os = detectOS();
+    if (os === 'iOS') {
+      return 'Télécharger sur l\'App Store';
+    } else if (os === 'Android') {
+      return 'Télécharger sur Google Play';
+    }
+    return 'Télécharger l\'application';
+  };
+
   return (
     <main className="min-h-screen">
       <Navigation />
@@ -56,6 +118,17 @@ export default function Home() {
                 <PartyPopper className="mr-2 h-5 w-5" />
                 Voir les événements
               </Button>
+              {isClient && isInstallable && (
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="text-white border-white hover:bg-white/10"
+                  onClick={handleInstallClick}
+                >
+                  <Download className="mr-2 h-5 w-5" />
+                  Installer l'application
+                </Button>
+              )}
             </div>
           </motion.div>
         </div>

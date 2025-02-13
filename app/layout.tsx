@@ -9,8 +9,12 @@ export const metadata: Metadata = {
   title: 'VITANUIT - Service de bus festif',
   description: 'Réservez votre expérience festive unique à bord de notre bus',
   manifest: '/manifest.json',
-  themeColor: '#ff66c4',
-  viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
+  themeColor: '#000000',
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1
+  },
   icons: {
     icon: '/3.png', // Ajoute le favicon
     apple: '/3.png', // Ajoute l'icône pour iOS
@@ -20,6 +24,11 @@ export const metadata: Metadata = {
     description: 'Réservez votre expérience festive unique à bord de notre bus',
     images: ['/og-image.jpg'],
   },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+    title: 'VITANUIT'
+  }
 };
 
 export default function RootLayout({
