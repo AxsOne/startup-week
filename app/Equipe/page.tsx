@@ -97,10 +97,10 @@ const teamMembers = [
     },
   {
     name: "Nathan FIROAGUER",
-    image: "",
+    image: "/Nathan.jpg",
   },
   {
     name: "Dany DEURVILHER",
-    image: "",
+    image: "/Dany.jpg",
   }
 ];
